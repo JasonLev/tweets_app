@@ -1,1 +1,42 @@
+<h1>Search for tweets:</h1>
 
+<!-- form to use -->
+<form>
+	<input type="text" id="query" name="q"/>
+	<input type="submit"/>
+</form>
+
+<!-- div for the results -->
+<div id="results"></div>
+
+<!-- Here's the ajax request: -->
+<script type="text/javascript">
+// start of the jQuery ready function, it will make sure the page is loaded first
+$(function() {
+	// first we want to prevent the form default ()
+	$('form').on('submit', function(event) {
+		event.preventDefault();
+		// capture the params:
+		var query = $('#query').val();
+		// here's the ajax request
+		var get_request = $.ajax({
+			url: "../search",
+			type: "get",
+			data: {q: query}
+		}); //end of ajax request
+
+		$('#results').html("");
+
+		get_request.done(function(data) {
+			for (var i=0; i< data.length; i++) {
+				var picture = data[i]["picture"];
+	
+				var info = "<p>Name: " + data[i]["name"] + "</p><p>Screen Name: " + data[i]["screen_name"] + "</p><img src='" + picture + "'/> Tweet: " + data[i]["text"];
+				$('#results').append(info);
+			}
+		});
+		$('#query').val("");
+	});
+});
+
+</script>

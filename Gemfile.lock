@@ -105,6 +105,7 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
@@ -117,3 +118,4 @@ DEPENDENCIES
   sqlite3
   twitter
   uglifier (>= 1.0.3)
+  will_paginate (~> 3.0)
