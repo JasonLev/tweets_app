@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
 
 	def index
+		@tweets = Tweet.paginate(per_page: 5, page: params[:page])
 	end
 
   def search
